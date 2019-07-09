@@ -14,20 +14,24 @@ SSM+AdminLTE+Oracle+Maven
 
   
 
-  数据的添加修改关联等操作
+  数据的添加修改关联，分页查询，用户权限，日志记录等操作
+
+  分页功能只在订单管理页面实现了，其他页面没实现
+
+  **将war包放入tomcat的webapps目录下，导入oracle数据库脚本，[访问地址](http://localhost:8080/heima_ssm_web)**
 
   
 
-  ![产品管理](/Users/huahuiyou/Desktop/SSM-Manager/img/产品管理.png)
+  ![产品管理](https://github.com/HuiYouHua/SSM-Manager/blob/master/img/产品管理.png)
 
-  ![订单管理](/Users/huahuiyou/Desktop/SSM-Manager/img/订单管理.png)
+  ![订单管理](https://github.com/HuiYouHua/SSM-Manager/blob/master/img/订单管理.png)
 
-  ![订单详情](/Users/huahuiyou/Desktop/SSM-Manager/img/订单详情.png)
+  ![订单详情](https://github.com/HuiYouHua/SSM-Manager/blob/master/img/订单详情.png)
 
-  ![角色管理](/Users/huahuiyou/Desktop/SSM-Manager/img/角色管理.png)
+  ![角色管理](https://github.com/HuiYouHua/SSM-Manager/blob/master/img/角色管理.png)
 
-  ![权限管理](/Users/huahuiyou/Desktop/SSM-Manager/img/权限管理.png)
-
-  ![日志管理](/Users/huahuiyou/Desktop/SSM-Manager/img/日志管理.png)
-
-  ![用户管理](/Users/huahuiyou/Desktop/SSM-Manager/img/用户管理.png)
+  ![权限管理](https://github.com/HuiYouHua/SSM-Manager/blob/master/img/权限管理.png)
+  
+  ![日志管理](https://github.com/HuiYouHua/SSM-Manager/blob/master/img/日志管理.png)
+  
+  ![用户管理](https://github.com/HuiYouHua/SSM-Manager/blob/master/img/用户管理.png)
