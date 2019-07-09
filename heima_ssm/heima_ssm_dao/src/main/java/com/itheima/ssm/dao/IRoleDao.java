@@ -1,0 +1,51 @@
+package com.itheima.ssm.dao;
+
+import com.itheima.ssm.domain.Permission;
+import com.itheima.ssm.domain.Role;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+
+public interface IRoleDao {
+
+    // 根据用户id查找对应角色
+    @Select("select * from role where id in(select roleId from users_role where userId=#{userId})")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "roleName", column = "roleName"),
+            @Result(property = "roleDesc", column = "roleDesc"),
+            @Result(property = "permissions", column = "id", javaType = java.util.List.class,
+                    many = @Many(select = "com.itheima.ssm.dao.IPermissionsDao.findPermissionByRoleId")),
+            @Result(property = "users", column = "id", javaType = java.util.List.class,
+                     many = @Many(select = "com.itheima.ssm.dao.IUserDao.findById"))
+    })
+    public List<Role> findByUserId(String userId) throws Exception;
+
+
+    @Select("select * from role")
+    public List<Role> findAll() throws Exception;
+
+    @Insert("insert into role(roleName, roleDesc) values(#{roleName}, #{roleDesc})")
+    public void save(Role role) throws Exception;
+
+    @Select("select * from role where id=#{roleId}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "roleName", column = "roleName"),
+            @Result(property = "roleDesc", column = "roleDesc"),
+            @Result(property = "permissions", column = "id", javaType = java.util.List.class,
+                    many = @Many(select = "com.itheima.ssm.dao.IPermissionsDao.findPermissionByRoleId")),
+            @Result(property = "users", column = "id", javaType = java.util.List.class,
+                    many = @Many(select = "com.itheima.ssm.dao.IUserDao.findUsersByRoleId"))
+    })
+    public Role findById(String roleId) throws Exception;
+
+    @Select("select * from permission where id not in(select permissionId from role_permission where roleId=#{roleId})")
+    public List<Permission> findOtherPermissions(String roleId) throws Exception;
+
+    @Insert("insert into role_permission(roleId, permissionId) values(#{roleId}, #{permissionId})")
+    public void addRoleToUser(@Param("roleId") String roleId, @Param("permissionId") String permissionId) throws Exception;
+
+    @Select("select * from role where id in(select roleId from role_permission where permissionId=#{permissionId})")
+    public List<Role> findRoleByPermissionId(String permissionId);
+}
